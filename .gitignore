@@ -1,2 +1,3 @@
-urls.txt
+*.txt
+!requirements.txt
 venv/

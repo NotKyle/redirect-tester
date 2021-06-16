@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 
 def main():
@@ -19,9 +20,10 @@ def main():
             bad_responses.append([response.status_code, url])
 
     print("Found the following bad responses:")
-
+    bad_urls_file = open(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ".txt", "w")
     for k, v in bad_responses:
         print("Received bad response %s for url %s" % (k, v))
+        bad_urls_file.write(v + " : " + str(k) + "\n")
 
     num_bad = (len(bad_responses) / len(lines) * 100)
     print("Out of %s URLs, there were %s error(s) [%s]" % (len(lines), len(bad_responses), (str(round(num_bad, 2)) + "%")))
